@@ -2,6 +2,8 @@ package com.springStudy1.control;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class MainControl {
@@ -15,6 +17,20 @@ public class MainControl {
 	public String signPage() {
 		System.out.println("로그인");
 		return "signIn.html";
+	}
+	
+	@GetMapping("/")
+	public String homePage() {
+		return "index.html";
+	}
+	
+	@GetMapping("/list")
+	public ModelAndView listPage(@RequestParam String type) {
+		System.out.println(type);
+		ModelAndView mav = new ModelAndView("list.html");
+		//mav.setViewName(type);
+		
+		return mav;
 	}
 }
 
