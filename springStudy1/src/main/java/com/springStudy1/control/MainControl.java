@@ -11,9 +11,16 @@ public class MainControl {
 		System.out.println(" 와 진짜 실행 된다.... 한글 좋아...");
 		return "hello.html";
 	}
+	@GetMapping("/signIn")
+	public String signPage() {
+		System.out.println("로그인");
+		return "signIn.html";
+	}
 }
 
-
+// 주소는 : http://localhost/signIn
+// 뷰 페이지 : signIn.html
+// 내용 : 아이디, 비밀번호 입력 가능하게
 
 /*
 	컨트롤 클래스의 역할 지정 - @Controller를 클래스 위에 넣기
