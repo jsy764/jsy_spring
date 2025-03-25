@@ -14,3 +14,8 @@
 	width:100%;
 	position:sticky;
 }
+
+#menuList{
+	width:100%;
+	display:flex;
+}
