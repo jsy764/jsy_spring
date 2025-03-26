@@ -7,7 +7,14 @@
 <th:block layout:fragment="css">
 	<link rel="stylesheet" th:href="@{./css/index.css}">
 </th:block>
-<th:block layout:fragment="script"></th:block>
+<th:block layout:fragment="script">
+	<script>
+		function send(){
+			let fm = document.getElementById("loginFm");
+			fm.submit();
+		}
+	</script>
+</th:block>
 
 </head>
 
@@ -15,17 +22,17 @@
 		<div id="loginWrap">
 			<div class="login-box">
 				<div class="login-area">
-					<form method="post" action="/signIn">
+					<form name="loginFm" id="loginFm" th:object="${memberDto}" method="post" action="/signIn">
 						<div class="input-field">
-							<label>ID</label>
-							<input type="text">
+							<label th:for="email">ID</label>
+							<input type="text" th:field="*{email}">
 						</div>
 						<div class="input-field">
-							<label>PassWord</label>
-							<input type="password">
+							<label th:for="password">PassWord</label>
+							<input type="password" th:field="*{password}">
 						</div>
 						<div id="loginBtBox">
-							<a href="" class="login-bt">LOGIN</a>
+							<a href="javascript:send();" class="login-bt">LOGIN</a>
 						</div>
 					</form>
 				</div>
