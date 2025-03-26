@@ -1,26 +1,17 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultra.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/default}">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>온라인도서관</title>
 
-<link rel="stylesheet" href="./css/default.css">
+<th:block layout:fragment="css">
+	<link rel="stylesheet" th:href="@{./css/index.css}">
+</th:block>
+<th:block layout:fragment="script"></th:block>
 
 </head>
-<body>
 
-	<div id="wrap">
-		
-		<div id="header">
-			<ul id="menulist">
-				<li class="menu"><a href="/bookSearch">도서검색</a></li>
-				<li class="menu"><a href="/loans">대출</a>
-				<li class="menu"><a href="/return">반납</a>
-				<li class="menu"><a href="/bookEnroll">도서등록</a>
-				<li class="menu"><a href="/goldLibrary">황금도서관</a>
-			</ul>
-		</div>
+	<div layout:fragment="main" id="main">
 		<div id="loginWrap">
 			<div class="login-box">
 				<div class="login-area">
@@ -40,9 +31,6 @@
 				</div>
 			</div>
 		</div>
-	
-		<!-- top 끝 -->
 	</div>
-	
 </body>
 </html>

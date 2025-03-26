@@ -37,6 +37,10 @@ public class MainController {
 		
 		return "test";
 	}
+	@GetMapping("/test2")
+	public String test() {
+		return "test2";
+	}
 }
 
 /*
