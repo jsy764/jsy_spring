@@ -28,9 +28,22 @@ public class MainController {
 		return "index";
 	}
 	@PostMapping("/signIn")
-	public String login(MemberDto memberDto) {
+	public String login(MemberDto memberDto, Model model) {
 		System.out.println(memberDto.getEmail());
-		return "redirect:/";
+		
+		// 로그인 처리를 진행하려면 service의 메서드를 호출한다.
+		// member와 관련된것은 MemberService에서 처리한다.
+		// 컨트롤 쪽에서는 로그인처리과정이 어떻게 진행되고 하는지 전혀 몰라도 된다.
+		// 그냥 service쪽 메서드를 호출하면 된다.
+		boolean isSuccess = memberService.signIn(memberDto);
+		
+		if(isSuccess) {
+			return "redirect:/";
+		}
+		// 로그인 실패시 index.html 다시 돌아가기
+		model.addAttribute("fail", 1);
+		return "index";
+		
 	}
 //	@GetMapping("/test")
 //	public String main(Model model) {
