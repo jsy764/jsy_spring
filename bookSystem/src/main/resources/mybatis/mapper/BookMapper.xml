@@ -11,5 +11,18 @@
 			#{bookYear}	 )
 	
 	</insert>
-
+	
+	<select id="findByAll" parameterType="com.bookSystem.DTO.BookSearchDto"
+	resultType="com.bookSystem.Entity.Book">
+			
+		select * from book
+		where 
+		 <choose>
+		 	<when>
+		 	
+		 	</when>
+		 
+		 </choose>	
+		
+	</select>
 </mapper>  
