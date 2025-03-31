@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.bookSystem.DTO.BookSearchDto;
 import com.bookSystem.Entity.Book;
+import com.bookSystem.Entity.BookUse;
 import com.bookSystem.Entity.MyBasket;
 
 @Mapper
@@ -27,4 +28,14 @@ public interface BookRepository {
 	// 대출 목록에 책 정보를 출력해야 하므로 mybasket테이블에 있는
 	// book_id를 통해 책 정보 조회하기. 하나씩 가져올거야!!!
 	public Book findById(int bookId);
+	
+	public int deleteBasket(int id);
+	
+	public int loanInsert(Map<String, Integer> info);
+	
+	
+	public List<BookUse> findByMyLoan(int memberId);
+	
+	
+	public int returnExcuteDB(int id);
 }

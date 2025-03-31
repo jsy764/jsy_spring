@@ -1,5 +1,10 @@
 package com.bookSystem.DTO;
 
+import java.time.LocalDate;
+
+import com.bookSystem.Entity.Book;
+import com.bookSystem.Entity.BookUse;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -7,10 +12,22 @@ import lombok.Setter;
 @Setter
 public class BookLoanDto {
 	private int id;
-	private int member_id;
-	private int book_id;
+	private String book_title;
+	private String book_author;
 	private String status;
-	private String long_date;
-	private String return_date;
+	private LocalDate loan_date;
+	private LocalDate return_date;
+	
+	public static BookLoanDto of(BookUse bookUse, Book book) {
+		// TODO Auto-generated method stub
+		BookLoanDto bookLoanDto = new BookLoanDto();
+		bookLoanDto.setBook_author(book.getBook_author());
+		bookLoanDto.setBook_title(book.getBook_title());
+		bookLoanDto.setId(bookUse.getId());
+		bookLoanDto.setLoan_date(bookUse.getLoan_date());
+		bookLoanDto.setStatus(bookUse.getStatus());
+		bookLoanDto.setReturn_date(bookUse.getReturn_date());
+		return null;
+	}
 	
 }
