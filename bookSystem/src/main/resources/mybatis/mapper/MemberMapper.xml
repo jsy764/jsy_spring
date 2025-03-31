@@ -12,5 +12,11 @@
 	 	and password=#{password}
 			
 	</select>
-
+	
+	<select id="findByEmail" parameterType="String"
+	resultType="int">
+		select member_id from test_member
+		where email=#{email}
+	</select>
+	
 </mapper>

@@ -8,7 +8,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.bookSystem.DTO.BookBasketDto;
+import com.bookSystem.DTO.BookListDto;
+import com.bookSystem.DTO.BookSearchDto;
 import com.bookSystem.DTO.MemberDto;
 import com.bookSystem.Service.BookService;
 import com.bookSystem.Service.MemberService;
@@ -55,6 +59,49 @@ public class MainController {
 		session.removeAttribute("user");
 		return "redirect:/";
 	}
+	
+	// 도서 검색 부분
+	@GetMapping("/bookSearch")
+	public String search(Model model) { // 도서검색 페이지 요청
+		
+		model.addAttribute("bookSearchDto", new BookSearchDto());
+		
+		return "book/search";
+	}
+	@GetMapping("/bookSearch/result")
+	public String searchResult(BookSearchDto bookSearchDto, Model model) {
+		
+		List<BookListDto> bookListDtos = bookService.bookSearch(bookSearchDto);
+		
+		model.addAttribute("bookListDtos", bookListDtos);
+		
+		return "book/search";
+	}
+	
+	// 도서검색 부분 끝
+	
+	// 도서제목 클릭하여 바구니에 넣기 요청처리
+	@GetMapping("/basket")
+	public String basket(@RequestParam int bookId, HttpSession session) {
+		
+		String email = (String)session.getAttribute("user");
+		bookService.myBasketSave(bookId, email);
+		
+		return "redirect:/bookSearch";
+	}
+	
+	// 대출 페이지 요청 처리
+	@GetMapping("/loans")
+	public String loansPage(Model model, HttpSession session) {
+		String email = (String)session.getAttribute("user");
+		
+		List<BookBasketDto> basketList = bookService.myBasketList(email);
+		
+		model.addAttribute("basketList", basketList);
+		
+		return "book/loan";
+	}
+	
 //	@GetMapping("/test")
 //	public String main(Model model) {
 //		

@@ -9,17 +9,17 @@ import lombok.Setter;
 @Setter
 public class Book {
 	private int bookId;
-	private String bookTitle;
-	private String bookAuthor;
-	private String bookPublishing;
-	private int bookYear;
+	private String book_title;
+	private String book_author;
+	private String book_publishing;
+	private int book_year;
 	
 	public static Book of(BookWriteDto bookWriteDto) {
 		Book book = new Book();
-		book.setBookAuthor(bookWriteDto.getBookAuthor());
-		book.setBookPublishing(bookWriteDto.getBookPublishing());
-		book.setBookTitle(bookWriteDto.getBookTitle());
-		book.setBookYear(bookWriteDto.getBookYear());
+		book.setBook_author(bookWriteDto.getBook_author());
+		book.setBook_publishing(bookWriteDto.getBook_publishing());
+		book.setBook_title(bookWriteDto.getBook_title());
+		book.setBook_year(bookWriteDto.getBook_year());
 		
 		return book;
 	}
