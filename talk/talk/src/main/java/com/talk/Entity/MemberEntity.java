@@ -1,5 +1,7 @@
 package com.talk.Entity;
 
+import com.talk.DTO.MemberSignUpDto;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,7 +15,9 @@ public class MemberEntity {
 	private String email;
 	private String tel;
 
-	public static MemberEntity to(MemberSignUpDto ) {
+	public static MemberEntity to(MemberSignUpDto memberSignUpDto) {
+		MemberEntity memberEntity = new MemberEntity();
 		
+		return memberEntity;
 	}
 }
