@@ -16,12 +16,18 @@ public class BoardDto {
 	public static BoardEntity to(BoardDto boardDto) {
 		
 		BoardEntity boardEntity = new BoardEntity();
-		
+		boardEntity.setId(boardDto.getId());
+		boardEntity.setTitle(boardDto.getTitle());
+		boardEntity.setContent(boardDto.getContent());
+		boardEntity.setFileName(boardDto.getFileName());
 		return boardEntity;
 	}
 	public static BoardDto from(BoardEntity boardEntity) {
 		BoardDto boardDto = new BoardDto();
-		
+		boardDto.setId(boardEntity.getId());
+		boardDto.setTitle(boardEntity.getTitle());
+		boardDto.setContent(boardEntity.getContent());
+		boardDto.setFileName(boardEntity.getFileName());
 		return boardDto;
 	}
 }

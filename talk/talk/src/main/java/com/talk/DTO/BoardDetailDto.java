@@ -22,7 +22,12 @@ public class BoardDetailDto {
 	
 	public static BoardDetailDto of(BoardEntity boardEntity, List<CommentViewDto> commentViewDto) {
 		BoardDetailDto boardDetatilDto = new BoardDetailDto();
-		
+		boardDetatilDto.setId(boardEntity.getId());
+		boardDetatilDto.setTitle(boardEntity.getTitle());
+		boardDetatilDto.setContent(boardEntity.getContent());
+		boardDetatilDto.setHit(boardEntity.getHit());
+		boardDetatilDto.setWriteDate(boardEntity.getWriteDate());
+		boardDetatilDto.setCommentList(commentViewDto);
 		return boardDetatilDto;
 	}
 }

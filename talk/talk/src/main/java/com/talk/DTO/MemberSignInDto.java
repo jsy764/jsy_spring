@@ -14,7 +14,8 @@ public class MemberSignInDto {
 	public static MemberEntity to(MemberSignInDto memberSignInDto) {
 		
 		MemberEntity memberEntity = new MemberEntity();
-		
+		memberEntity.setMemberId(memberSignInDto.getMemberId());
+		memberEntity.setPassword(memberSignInDto.getPassword());
 		return memberEntity;
 	}
 }

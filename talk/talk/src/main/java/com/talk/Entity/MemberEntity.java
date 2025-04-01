@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 public class MemberEntity {
 	private int id;
-	private int memberId;
+	private String memberId;
 	private String password;
 	private String name;
 	private String email;
