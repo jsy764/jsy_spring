@@ -15,6 +15,7 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
+	@PostMapping("/signUp")
 	public String signUp(MemberSignUpDto memberSignUpDto, Model model) {
 		
 		return null;
