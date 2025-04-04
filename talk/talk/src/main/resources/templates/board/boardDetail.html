@@ -34,7 +34,8 @@
                         <img th:src="*{fileName}" src="./image/slide1.jpg">
                     </div>
                     
-                    <a th:href="'/board/updatePage?id='+${boardDetailDto.id}">수정</a>
+                    <a class="btn btn-color-red" 
+                    th:href="'/board/updatePage?id='+${boardDetailDto.id}">수정</a>
             </div>
             <div id="commentBox" class="text-light">
                 <div id="commentWriteBox">
