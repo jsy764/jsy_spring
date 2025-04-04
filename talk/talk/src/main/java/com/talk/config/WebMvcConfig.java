@@ -1,10 +1,25 @@
 package com.talk.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer{
+	
+	@Value("${uploadPath}")
+	String uploadPath;
+	
+	// 실제 업로드 경로와 웹에서 사용하는 경로(주소)를 연결, 실제 업로드 경로는 웹에서
+	// 사용할 수 없는 경로이기때문에 웹용으로 /files를 쓰겠다라고 등록
+	// 웹에서 /files/12445.jpg 라는 이미지 요청이 들어오면
+	// 실제경로는 c:/talkimage/12445.jpg의 이미지를 제공한다.
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		registry.addResourceHandler("/files/**").addResourceLocations(uploadPath);
+	}
+	
 	// WebMvcConfigurer 인터페이스는 
 	// Spring Mvc 설정을 사용자(개발자) 정의하기위해 사용한다.
 	// - 리소스 핸들러 설정 : 정적 리소스(css, javascript, 이미지, 파일 등)

@@ -27,6 +27,8 @@ public class BoardDetailDto {
 		boardDetatilDto.setContent(boardEntity.getContent());
 		boardDetatilDto.setHit(boardEntity.getHit());
 		boardDetatilDto.setWriteDate(boardEntity.getWriteDate());
+		boardDetatilDto.setMemberId(boardEntity.getMemberId());
+		boardDetatilDto.setFileName(boardEntity.getFileName());
 		boardDetatilDto.setCommentList(commentViewDto);
 		return boardDetatilDto;
 	}

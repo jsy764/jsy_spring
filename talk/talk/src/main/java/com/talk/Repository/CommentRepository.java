@@ -12,5 +12,5 @@ public interface CommentRepository {
 	
 	public int delete(int id);
 	
-	public int findByBoardIdOrderByIdDesc(List<CommentEntity> commentEntity);
+	public List<CommentEntity> findByBoardIdOrderByIdDesc(int id);
 }
