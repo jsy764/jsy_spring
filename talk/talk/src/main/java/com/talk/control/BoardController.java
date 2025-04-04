@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.talk.DTO.BoardDto;
 import com.talk.DTO.CommentDto;
@@ -23,19 +25,24 @@ public class BoardController {
 	@GetMapping("/index")
 	public String boardIndex(@RequestParam("page") int pageNum, Model model) {
 		
-		return null;
+		return "board/boardList";
 	}
 	
 	@GetMapping("/write")
 	public String boardWrite(HttpSession session, Model model) {
+		model.addAttribute("boardDto", new BoardDto());
+		return "board/boardWrite";
+	}
+	@PostMapping("/writeSave")
+	public String boardWrite(BoardDto boardDto, 
+			@RequestParam("imgFile") MultipartFile multipartFile, HttpSession session,
+			Model model) {
+		String memberId = (String)session.getAttribute("user");
+		boardService.boardSave(boardDto, memberId, multipartFile);
 		
-		return null;
+		return "redirect:/board/index?page=1";
 	}
-	@GetMapping("/writeSave")
-	public String boardWrite(BoardDto boardDto, HttpSession session, Model model) {
-		return null;
-	}
-	@GetMapping("/write")
+	@GetMapping("/delete")
 	public String boardDelete(@RequestParam("id") int id, HttpSession session) {
 		return null;
 	}

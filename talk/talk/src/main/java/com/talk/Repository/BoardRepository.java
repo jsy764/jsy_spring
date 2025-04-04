@@ -31,6 +31,6 @@ public interface BoardRepository {
 	public List<BoardEntity> findByOrderByWriteDateDesc();
 	
 	//인기글
-	public List<BoardEntity> findByOrderByHit();
+	public List<BoardEntity> findByOrderByHitDesc();
 	
 }

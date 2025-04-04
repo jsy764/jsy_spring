@@ -16,6 +16,7 @@ public class BoardDto {
 	public static BoardEntity to(BoardDto boardDto) {
 		
 		BoardEntity boardEntity = new BoardEntity();
+		
 		boardEntity.setId(boardDto.getId());
 		boardEntity.setTitle(boardDto.getTitle());
 		boardEntity.setContent(boardDto.getContent());
