@@ -1,7 +1,10 @@
 package com.talk.Service;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -15,7 +18,7 @@ public class FileService {
 	@Value("${filePath}")
 	private String filePath;
 	
-	public String uploadFile(MultipartFile multipartFile) {
+	public String uploadFile(MultipartFile multipartFile) throws IOException {
 		//String originalName = multipartFile.getOriginalFilename(); // 원본이름
 		String originalName = multipartFile.getOriginalFilename();
 		String fileName="";
@@ -25,7 +28,7 @@ public class FileService {
 		return fileUrl;
 		
 	}
-	public List<String> uploadFile(List<MultipartFile> multipartFiles) {
+	public List<String> uploadFile(List<MultipartFile> multipartFiles) throws IOException {
 		
 		List<String> fileUrls = new ArrayList<>();
 		
@@ -34,5 +37,22 @@ public class FileService {
 			fileUrls.add(fileurl);
 		}
 		return fileUrls;
+	}
+	
+	private String fileSave(String originalName, byte[] fileData) throws IOException { // 진짜 업로드 해주는 메서드
+		
+		UUID uuid = UUID.randomUUID(); // 이름 중복을 방지하기 위한 랜덤 문자열생성
+		// 업로드 하는 파일의 확장자 추출하기 -> .jpg, .PNG, .hwp
+		String ext = originalName.substring( originalName.lastIndexOf("."));
+		// 실제 업로드해서 저장될 이름
+		String saveName = uuid.toString() + ext;
+		// 업로드 경로와 업로드파일 명
+		String fileUploadUrl = filePath+"/"+saveName;
+		FileOutputStream fos = new FileOutputStream(fileUploadUrl);
+		fos.write(fileData);
+		fos.close();
+		
+		return saveName;
+		
 	}
 }
